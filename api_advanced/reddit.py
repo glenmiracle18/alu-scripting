@@ -1,22 +1,33 @@
-# this is a test file for the reddit api
+
+#!/usr/bin/python3
+
+# import requests
 import requests
 import sys
 
 
-def subscribers_count(subreddit):
-    api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
+def number_of_subscribers(subreddit):
+    """
+    main function for the subcriber count
+    """
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {'User-Agent': 'Testapi/1.0 by Danjor667'}
     try:
-        response = requests.get(api_url, allow_redirects=False)
-        data = response.json()
-        return data['data']['subscribers']
+        response = requests.get(url, headers=headers, allow_redirects=False)
+        if response.status_code == 200:
+            data = response.json()
+            return data['data']['subscribers']
+        else:
+            return 0
     except requests.exceptions.RequestException as e:
-        print (e)
+        print(f"An error occurred: {e}")
         return 0
 
+
 if __name__ == "__main__":
-    subreddit = sys.argv[1]
     if len(sys.argv) < 2:
-        print('please parse an argument')
-    else:
-        subcribers = subscribers_count(subreddit)
-        print(subcribers)
+        print("Please pass an argument for the subreddit to search")
+        sys.exit()
+    subreddit_name = sys.argv[1]
+    subscribers = number_of_subscribers(subreddit_name)
+    print("{:d}".format(subscribers))
