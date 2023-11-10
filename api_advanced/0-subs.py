@@ -1,15 +1,11 @@
 #!/usr/bin/python3
 
 # import requests
-
-# api_url = ''
-# secret_key = '	T4EbINda5sbBMwPuqxB-cksxeoIyyw'
-# queary_string = ' /api/subscribe'
-
-# !/usr/bin/python3
 """
-making api calls to the reddit api endpoint
+this is my module documentation
+
 """
+
 import requests
 import sys
 
