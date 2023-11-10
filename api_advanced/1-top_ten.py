@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-# this is a test file for the reddit api
+"""
+defines the main function to get
+the top tem hot titles from the reddit
+api
+"""
 import requests
 import sys
 
@@ -16,12 +20,3 @@ def top_ten(subreddit):
     except requests.exceptions.RequestException as e:
         print(e)
         return 0
-
-
-if __name__ == "__main__":
-    subreddit = sys.argv[1]
-    if len(sys.argv) < 2:
-        print('please parse an argument')
-    else:
-        subcribers = top_ten(subreddit)
-        print(subcribers)
