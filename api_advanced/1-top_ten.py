@@ -25,5 +25,5 @@ def top_ten(subreddit):
         data_info = info.json()
         for post in data_info.get('data').get('children'):
             print(post.get('data').get('title'))
-    else:
+    else:c
         return (0)
