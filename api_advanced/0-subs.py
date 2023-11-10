@@ -1,18 +1,13 @@
 #!/usr/bin/python3
 
 # import requests
-"""
-this is my module documentation
-
-"""
-
 import requests
 import sys
 
 
 def number_of_subscribers(subreddit):
     """
-    main function
+    main function for the subcriber count
     """
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'Testapi/1.0 by Danjor667'}
