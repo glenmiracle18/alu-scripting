@@ -3,11 +3,11 @@
 import requests
 import sys
 
-
-def subscribers_count(subreddit):
-    """
+"""
     main function for the subcriber count
-    """
+"""
+def subscribers_count(subreddit):
+    #  main moadule
     api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
     try:
         response = requests.get(api_url, allow_redirects=False)
