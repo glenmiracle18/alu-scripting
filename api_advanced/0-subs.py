@@ -1,27 +1,27 @@
 #!/usr/bin/python3
-# this is a test file for the reddit api
+"""
+defines the main function to get
+the sub count from the reddit
+api
+"""
 import requests
 import sys
 
-"""
-    main function for the subcriber count
-"""
-def subscribers_count(subreddit):
-    #  main moadule
-    api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    try:
-        response = requests.get(api_url, allow_redirects=False)
-        data = response.json()
-        return data['data']['subscribers']
-    except requests.exceptions.RequestException as e:
-        print(e)
-        return 0
 
-
-if __name__ == "__main__":
-    subreddit = sys.argv[1]
-    if len(sys.argv) < 2:
-        print('please parse an argument')
+def number_of_subscribers(subreddit):
+    """
+    Sends a query to the reddit api to get the nhmber of subscribers
+    for a particular subreddit
+    """
+    if subreddit is None or not isinstance(subreddit, str):
+        return (0)
+    endpoint = 'https://www.reddit.com'
+    headers = {'user-agent': 'Testapi/1.0 by glenmiracle18'}
+    info = requests.get('{}/r/{}/about.json'.format(
+        endpoint,
+        subreddit), headers=headers, allow_redirects=False)
+    if info.status_code == 200:
+        data_info = info.json()
+        return (data_info.get('data').get('subscribers'))
     else:
-        subcribers = subscribers_count(subreddit)
-        print(subcribers)
+        return (0)
