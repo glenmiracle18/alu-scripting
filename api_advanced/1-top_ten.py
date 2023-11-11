@@ -1,29 +1,29 @@
 #!/usr/bin/python3
-"""
-defines the main function to get
-the top tem hot titles from the reddit
-api
-"""
+'''
+Defines function that prints the top ten posts of a subreddit
+'''
 import requests
-import sys
 
 
 def top_ten(subreddit):
-    """
-    Sends a query to the reddit api to get the hot ten titles
-    for a particular subreddit
-    """
+    '''Prints the top ten posts of a subreddit
+
+    Return:
+        None -  if the subreddit is invalid
+    '''
     if subreddit is None or not isinstance(subreddit, str):
-        return (0)
+        print(None)
     endpoint = 'https://www.reddit.com'
-    headers = {'user-agent': 'Testapi/1.0 by glenmiracle18'}
+    headers = {'user-agent': '0x16-api_advanced:project:\
+v1.0.0 (by /u/shobi_ola)'}
     params = {'limit': 10}
-    info = requests.get('{}/r/{}/hot.json'.format(
-        endpoint,
-        subreddit), headers=headers, params=params, allow_redirects=False)
+    info = requests.get('{}/r/{}/hot.json'.format(endpoint, subreddit),
+                        allow_redirects=False,
+                        headers=headers,
+                        params=params)
     if info.status_code == 200:
-        data_info = info.json()
-        for post in data_info.get('data').get('children'):
+        json_info = info.json()
+        for post in json_info.get('data').get('children'):
             print(post.get('data').get('title'))
-    else:c
-        return (0)
+    else:
+        print(None)
